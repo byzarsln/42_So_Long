@@ -6,7 +6,7 @@
 /*   By: beyarsla <beyarsla@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 13:07:07 by beyarsla          #+#    #+#             */
-/*   Updated: 2024/03/25 18:44:52 by beyarsla         ###   ########.fr       */
+/*   Updated: 2024/03/26 19:14:27 by beyarsla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,16 @@
 # define _WALL '1'
 # define _GROUND '0'
 
+
+typedef struct s_locate
+{
+	int	player_x;
+	int	player_y;
+	int	exit_x;
+	int	exit_y;
+	int	move;
+	int	direction;
+}			t_locate;
 
 typedef struct s_count
 {
@@ -47,6 +57,7 @@ typedef struct s_game
 	void		*mlx_window;
 	t_map		*map;
 	t_counter	*counters;
+	t_locate	*pos;
 }				t_game;
 
 
