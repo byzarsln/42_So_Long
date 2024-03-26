@@ -6,7 +6,7 @@
 /*   By: beyarsla <beyarsla@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 13:06:46 by beyarsla          #+#    #+#             */
-/*   Updated: 2024/03/25 18:45:46 by beyarsla         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:07:52 by beyarsla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ void ft_map_char_cont(t_game *game)
 	if(!game->counters 
 		&& ft_printf("Failed to allocate counters memory space!"))
 		exit(1);
-	while(y++ < game->map->map_y)
+	while(++y < game->map->map_y)
 	{
 		x = -1;
-		while(x++ < game->map->map_x)
+		while(++x < game->map->map_x)
 		{
 			if((ft_strchr(_ELEMENTS, game->map->game_map[y][x]) == 0 )
 				&& ft_printf("Unrecognized character in map file %d %d\n", y, x))
@@ -68,10 +68,10 @@ static void ft_game_map_check(t_game *game)
 	int	y;
 	int	control_line;
 
-	y = 0;
-	while(y < game->map->map_y)
+	y = -1;
+	while(++y < game->map->map_y)
 	{
-		control_line = ft_strlen(game->map->game_map[y++]);
+		control_line = ft_strlen(game->map->game_map[y]);
 		if ((control_line != game->map->map_x) 
 			&& ft_printf("The map length is inconsistent"))
 			exit(1);
