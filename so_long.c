@@ -6,11 +6,80 @@
 /*   By: beyarsla <beyarsla@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 13:06:46 by beyarsla          #+#    #+#             */
-/*   Updated: 2024/03/26 19:24:06 by beyarsla         ###   ########.fr       */
+/*   Updated: 2024/03/27 19:14:48 by beyarsla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	ft_dispose_map(t_map *tmp_map)
+{
+	int	i;
+
+	i = -1;
+	if(!tmp_map)
+		return ;
+	while(++i < tmp_map->map_y)
+		free(tmp_map->game_map[i]);
+	free(tmp_map->game_map);
+}
+
+void	is_reachable(t_map *tmp_map)
+{
+	int	x;
+	int	y;
+
+	y = -1;
+	while(++y < tmp_map->map_y)
+	{
+		x = -1;
+		while(++x < tmp_map->map_x)
+		{
+			if(tmp_map->game_map[y][x] == _EXIT)
+			{
+				ft_printf("Exit is not reachable!");
+				exit(1);
+			}
+			else if(tmp_map->game_map[y][x] == _COLLECTIBLE)
+			{
+				ft_printf("Collectible is not reachable!");
+				exit(1);
+			}
+		}
+	}
+	ft_dispose_map(tmp_map);
+}
+
+void	flood_fill(t_map *tmp_map, int y, int x)
+{
+	if (x < 0 || x > tmp_map->map_x || y < 0 || y > tmp_map->map_y)
+		return ;
+	if (tmp_map->game_map[y][x] != _WALL && tmp_map->game_map[y][x] != 'F')
+	{
+		tmp_map->game_map[y][x] = 'F';
+		flood_fill(tmp_map, y - 1, x);
+		flood_fill(tmp_map, y + 1, x);
+		flood_fill(tmp_map, y, x - 1);
+		flood_fill(tmp_map, y, x + 1);
+	}
+}
+
+void	ft_copy_map(t_game *game)
+{
+	t_map	tmp_map;
+	int	i;
+
+	tmp_map.game_map = malloc(sizeof(char *) * game->map->map_y);
+	if(!tmp_map.game_map && ft_printf("Failed to allocate memory space!"))
+		exit(1);
+	i = -1;
+	while(++i < game->map->map_y)
+		tmp_map.game_map[i] = ft_strdup(game->map->game_map[i]);
+	tmp_map.map_x = game->map->map_x;
+	tmp_map.map_y = game->map->map_y;
+	flood_fill(&tmp_map, game->pos->player_y / 64, game->pos->player_x / 64);
+	is_reachable(&tmp_map);
+}
 
 void	ft_get_cords(t_game *game)
 {
@@ -44,6 +113,10 @@ void	ft_create_window(t_game *game)
 {
 	game->mlx = mlx_init();
 	ft_get_cords(game);
+	ft_copy_map(game);
+	game->mlx_window = mlx_new_window(game->mlx, game->map->map_x * 64,
+		game->map->map_y * 64, "SO_LONG");
+	mlx_loop(game->mlx);
 	
 }
 

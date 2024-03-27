@@ -9,16 +9,16 @@ OBJ=$(OBJ1:.m=.o)
 CFLAGS+=-O2
 
 # add to match string put with X11 in size and position
-CFLAGS+= -DSTRINGPUTX11 -w
+CFLAGS+= -DSTRINGPUTX11
 
 all: $(NOM)
 
 $(NOM):	$(OBJ)
-	@ar -r $(NOM) $(OBJ)
-	@ranlib $(NOM)
+	ar -r $(NOM) $(OBJ)
+	ranlib $(NOM)
 
 clean:
-	@rm -f $(NOM) $(OBJ) *~
-	@rm -f mlx_app
+	rm -f $(NOM) $(OBJ) *~
+	rm -f mlx_app
 
 re: clean all
