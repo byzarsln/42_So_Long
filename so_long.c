@@ -6,11 +6,189 @@
 /*   By: beyarsla <beyarsla@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 13:06:46 by beyarsla          #+#    #+#             */
-/*   Updated: 2024/03/27 19:14:48 by beyarsla         ###   ########.fr       */
+/*   Updated: 2024/03/29 18:01:44 by beyarsla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	ft_mouse_exit(t_game *game)
+{
+	ft_printf("Exit Successful");
+	exit(1);
+}
+
+void	ft_pos_control(t_game *game)
+{
+	if(game->map->game_map[game->pos->player_y / 64][game->pos->player_x / 64] == _COLLECTIBLE && game->counters->c_count--)
+		game->map->game_map[game->pos->player_y / 64][game->pos->player_x / 64] = _GROUND;
+	if(game->map->game_map[game->pos->player_y / 64][game->pos->player_x / 64] == _EXIT && game->counters->c_count == 0)
+	{
+		ft_printf("Look Up! You're Flying :)");
+	}
+}
+
+int	is_move(int keycode, t_game *game)
+{
+	if(keycode == _KEY_A)
+		if(game->map->game_map[game->pos->player_y / 64][game->pos->player_x / 64 - 1] != _WALL)
+			return(1);
+	if(keycode == _KEY_D)
+		if(game->map->game_map[game->pos->player_y / 64][game->pos->player_x / 64 + 1] != _WALL)
+			return(1);
+	if(keycode == _KEY_W)
+		if(game->map->game_map[game->pos->player_y / 64 - 1][game->pos->player_x / 64] != _WALL)
+			return(1);
+	if(keycode == _KEY_S)
+		if(game->map->game_map[game->pos->player_y / 64 + 1][game->pos->player_x / 64] != _WALL)
+			return(1);
+	return(0);
+}
+
+void	ft_key_a_d(int keycode, t_game *game)
+{
+	if(keycode == _KEY_A)
+	{
+		if(is_move(keycode, game) && ft_printf("Move Step: %d\n",
+		game->pos->move++))
+		{
+			game->pos->direction = 1;
+			game->pos->player_x -= 64;
+		}
+	}
+	if(keycode == _KEY_D)
+	{
+		if(is_move(keycode, game) && ft_printf("Move Step: %d\n",
+		game->pos->move++))
+		{
+			game->pos->direction = 0;
+			game->pos->player_x += 64;
+		}
+	}
+}
+
+int	ft_get_keycode(int keycode, t_game *game)
+{
+	if (keycode == _KEY_EXIT || keycode == _KEY_ESC)
+	{
+		ft_printf("Exit Successful");
+		exit(1);
+	}
+	if (keycode == _KEY_S)
+		if(is_move(keycode, game) && ft_printf("Move Step: %d\n",
+			game->pos->move++))
+			game->pos->player_y += 64;
+	if(keycode == _KEY_W)
+		if(is_move(keycode, game) && ft_printf("Move Step: %d\n",
+			game->pos->move++))
+			game->pos->player_y -= 64;
+	if(keycode == _KEY_A || keycode == _KEY_D)
+		ft_key_a_d(keycode, game);
+	ft_pos_control(game);
+	return(0);
+}
+
+static void	ft_direction(t_game *game)
+{
+	if(game->pos->direction == 1)
+		mlx_put_image_to_window(game->mlx, game->mlx_window,
+			game->image->player_left_img, game->pos->player_x, game->pos->player_y);
+	else
+		mlx_put_image_to_window(game->mlx, game->mlx_window,
+			game->image->player_right_img, game->pos->player_x, game->pos->player_y);
+	if(game->counters->c_count > 0)
+		mlx_put_image_to_window(game->mlx, game->mlx_window,
+			game->image->coll_img, game->pos->exit_x, game->pos->exit_y);
+	//ELSE KOY!!!!!!!!
+}
+static int	ft_put_image(t_game *game)
+{
+	int	x;
+	int	y;
+
+	mlx_clear_window(game->mlx, game->mlx_window);
+	y = -1;
+	while(++y < game->map->map_y)
+	{
+		x = -1;
+		while(++x < game->map->map_x)
+		{
+			mlx_put_image_to_window(game->mlx, game->mlx_window,
+				game->image->ground_img, x * 64, y * 64);
+			if(game->map->game_map[y][x] == _WALL)
+				mlx_put_image_to_window(game->mlx, game->mlx_window,
+					game->image->wall_img, x * 64, y * 64);
+			if(game->map->game_map[y][x] == _COLLECTIBLE)
+				mlx_put_image_to_window(game->mlx, game->mlx_window,
+					game->image->coll_img, x * 64, y * 64);
+		}
+	}
+	ft_direction(game);
+	return(0);
+}
+
+void	ft_exit(int err, t_game *game)
+{
+	if (err == _COLLECT_XPM && ft_printf("collect.xpm not found!"))
+		exit(1);
+	if (err == _GROUND_XPM && ft_printf("ground.xpm not found!"))
+		exit(1);
+	if (err == _WALL_XPM && ft_printf("wall.xpm not found!"))
+		exit(1);
+	if (err == _PLAYER_L_XPM && ft_printf("player_l.xpm not found!"))
+		exit(1);
+	if (err == _PLAYER_R_XPM && ft_printf("player_r.xpm not found!"))
+		exit(1);
+	// if (err == _EXIT_XPM && ft_printf("exit.xpm not found!"))
+	// 	exit(1);
+	// EXITFULL KONTROLÜ VE TANIMLAMASI YAP!!!!!!
+}
+
+static int	ft_xpm_control(t_game *game)
+{
+	int	fd;
+
+	fd = open("textures/collect.xpm", O_RDONLY);
+	if(fd < 0 && close(fd))
+		ft_exit(_COLLECT_XPM,game);
+	fd = open("textures/wall.xpm", O_RDONLY);
+	if(fd < 0 && close(fd))
+		ft_exit(_WALL_XPM,game);
+	fd = open("textures/ground.xpm", O_RDONLY);
+	if(fd < 0 && close(fd))
+		ft_exit(_GROUND_XPM,game);
+	fd = open("textures/player_l.xpm", O_RDONLY);
+	if(fd < 0 && close(fd))
+		ft_exit(_PLAYER_L_XPM,game);
+	fd = open("textures/player_r.xpm", O_RDONLY);
+	if(fd < 0 && close(fd))
+		ft_exit(_PLAYER_R_XPM,game);
+	fd = open("textures/exit.xpm", O_RDONLY);
+	// if(fd < 0 && close(fd))
+	// 	ft_exit(_EXIT_XPM,game);
+	return (1);
+}
+
+void	ft_get_path_xpm(t_game *game)
+{
+	int	x;
+	int	y;
+	
+	game->image = ft_calloc(1, sizeof(t_textures));
+	if(ft_xpm_control(game))
+	{
+		game->image->coll_img = mlx_xpm_file_to_image(game->mlx,
+			"textures/collect.xpm", &x, &y);
+		game->image->ground_img = mlx_xpm_file_to_image(game->mlx,
+			"textures/ground.xpm", &x, &y);
+		game->image->player_left_img = mlx_xpm_file_to_image(game->mlx,
+			"textures/player_l.xpm", &x, &y);
+		game->image->player_right_img = mlx_xpm_file_to_image(game->mlx,
+			"textures/player_r.xpm", &x, &y);
+		game->image->wall_img = mlx_xpm_file_to_image(game->mlx,
+			"textures/wall.xpm", &x, &y);
+	}
+}
 
 void	ft_dispose_map(t_map *tmp_map)
 {
@@ -116,6 +294,10 @@ void	ft_create_window(t_game *game)
 	ft_copy_map(game);
 	game->mlx_window = mlx_new_window(game->mlx, game->map->map_x * 64,
 		game->map->map_y * 64, "SO_LONG");
+	ft_get_path_xpm(game);
+	mlx_loop_hook(game->mlx, ft_put_image, game);
+	mlx_key_hook(game->mlx_window, ft_get_keycode, game);
+	mlx_hook(game->mlx_window, 17, 0, ft_mouse_exit, game);
 	mlx_loop(game->mlx);
 	
 }

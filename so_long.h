@@ -6,7 +6,7 @@
 /*   By: beyarsla <beyarsla@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 13:07:07 by beyarsla          #+#    #+#             */
-/*   Updated: 2024/03/26 19:14:27 by beyarsla         ###   ########.fr       */
+/*   Updated: 2024/03/29 17:35:43 by beyarsla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,50 @@
 # define _COLLECTIBLE 'C'
 # define _WALL '1'
 # define _GROUND '0'
+# define _COLLECT_XPM 1
+# define _WALL_XPM 2
+# define _GROUND_XPM 3
+# define _PLAYER_L_XPM 4
+# define _PLAYER_R_XPM 5
+# define _EXIT_XPM 6
+
+# define _KEY_EXIT 17
+
+# ifndef _KEY_A
+#  define _KEY_A 0
+# endif
+
+# ifndef _KEY_S
+#  define _KEY_S 1
+# endif
+
+# ifndef _KEY_D
+#  define _KEY_D 2
+# endif
+
+# ifndef _KEY_W
+#  define _KEY_W 13
+# endif
+
+
+
+
+# ifndef _KEY_ESC
+#  define _KEY_ESC 53
+# endif
+
+
+typedef struct s_texture
+{
+	void	*player_right_img;
+	void	*player_left_img;
+	void	*exit_img;
+	void	*exit_full_img;
+	void	*coll_img;
+	void	*ground_img;
+	void	*wall_img;
+	
+}			t_textures;
 
 
 typedef struct s_locate
@@ -58,6 +102,7 @@ typedef struct s_game
 	t_map		*map;
 	t_counter	*counters;
 	t_locate	*pos;
+	t_textures	*image;
 }				t_game;
 
 
