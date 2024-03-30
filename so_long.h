@@ -6,7 +6,7 @@
 /*   By: beyarsla <beyarsla@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 13:07:07 by beyarsla          #+#    #+#             */
-/*   Updated: 2024/03/29 17:35:43 by beyarsla         ###   ########.fr       */
+/*   Updated: 2024/03/30 18:52:51 by beyarsla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "lib/libft/libft.h"
 # include "lib/mlx/mlx.h"
 # include "fcntl.h"
+
 
 # define _ELEMENTS "10PEC"
 # define _PLAYER 'P'
@@ -104,6 +105,20 @@ typedef struct s_game
 	t_locate	*pos;
 	t_textures	*image;
 }				t_game;
+
+
+void	ber_check(char *map_name);
+void	ft_window_size(t_game *game);
+void	ft_map_char_cont(t_game *game);
+void	ft_create_window(t_game *game);
+void	ft_get_cords(t_game *game);
+void	ft_copy_map(t_game *game);
+void	flood_fill(t_map *tmp_map, int y, int x);
+void	ft_get_path_xpm(t_game *game);
+void	ft_direction(t_game *game);
+int		is_move(int keycode, t_game *game);
+void	ft_key_a_d(int keycode, t_game *game);
+void	ft_pos_control(t_game *game);
 
 
 #endif
