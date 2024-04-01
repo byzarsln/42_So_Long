@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   control_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beyarsla <beyarsla@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: beyza <beyza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 17:42:50 by beyarsla          #+#    #+#             */
-/*   Updated: 2024/04/01 15:56:15 by beyarsla         ###   ########.fr       */
+/*   Updated: 2024/04/02 00:58:27 by beyza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	ft_map_char_cont(t_game *game)
 
 void	ft_window_size(t_game *game)
 {
-	if (game->map->map_x > 35 || game->map->map_y > 20)
+	if (game->map->map_x > 25 || game->map->map_y > 15)
 	{
 		ft_printf("Window size is too big!");
 		exit(1);

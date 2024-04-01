@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beyarsla <beyarsla@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: beyza <beyza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 13:07:07 by beyarsla          #+#    #+#             */
-/*   Updated: 2024/04/01 16:08:24 by beyarsla         ###   ########.fr       */
+/*   Updated: 2024/04/02 00:59:38 by beyza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,6 @@ void	ft_direction(t_game *game);
 int		is_move(int keycode, t_game *game);
 void	ft_key_a_d(int keycode, t_game *game);
 void	ft_pos_control(t_game *game);
-int		put_str(t_game *game);
+int		put_move(t_game *game);
 
 #endif

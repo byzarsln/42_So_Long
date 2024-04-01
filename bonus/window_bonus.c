@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beyarsla <beyarsla@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: beyza <beyza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 17:48:55 by beyarsla          #+#    #+#             */
-/*   Updated: 2024/04/01 16:16:43 by beyarsla         ###   ########.fr       */
+/*   Updated: 2024/04/02 00:59:45 by beyza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static int	ft_put_image(t_game *game)
 		}
 	}
 	ft_direction(game);
-	put_str(game);
+	put_move(game);
 	return (0);
 }
 

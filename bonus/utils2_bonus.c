@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils2_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beyarsla <beyarsla@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: beyza <beyza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:06:03 by beyarsla          #+#    #+#             */
-/*   Updated: 2024/04/01 16:20:43 by beyarsla         ###   ########.fr       */
+/*   Updated: 2024/04/02 00:59:23 by beyza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-int	put_str(t_game *game)
+int	put_move(t_game *game)
 {
 	char	*move;
 
