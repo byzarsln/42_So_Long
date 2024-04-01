@@ -6,7 +6,7 @@
 /*   By: beyarsla <beyarsla@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 17:39:43 by beyarsla          #+#    #+#             */
-/*   Updated: 2024/03/30 17:40:41 by beyarsla         ###   ########.fr       */
+/*   Updated: 2024/04/01 14:25:22 by beyarsla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static void	ft_game_map_check(t_game *game)
 	int	control_line;
 
 	y = -1;
-	while(++y < game->map->map_y)
+	while (++y < game->map->map_y)
 	{
 		control_line = ft_strlen(game->map->game_map[y]);
-		if ((control_line != game->map->map_x) 
+		if ((control_line != game->map->map_x)
 			&& ft_printf("The map length is inconsistent"))
 			exit(1);
 	}
@@ -36,11 +36,11 @@ static void	ft_read_map(char *map, t_game *game)
 
 	y = 0;
 	game->map->game_map = malloc(sizeof(char *) * game->map->map_y);
-	if (!game->map->game_map 
+	if (!game->map->game_map
 		&& ft_printf("Failed to allocate map memory space!"))
 		exit(1);
 	fd = open(map, O_RDONLY);
-	while(y < game->map->map_y)
+	while (y < game->map->map_y)
 		game->map->game_map[y++] = get_next_line(fd);
 	close(fd);
 	ft_game_map_check(game);
@@ -61,11 +61,11 @@ static void	ft_get_map_size(char *map_name)
 	fd = open(map_name, O_RDONLY);
 	game->map->map_y = 0;
 	game->map->map_x = 0;
-	while(1)
+	while (1)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
-			break;
+			break ;
 		game->map->map_x = ft_strlen(line);
 		game->map->map_y++;
 		free(line);

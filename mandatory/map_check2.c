@@ -6,7 +6,7 @@
 /*   By: beyarsla <beyarsla@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 17:55:47 by beyarsla          #+#    #+#             */
-/*   Updated: 2024/03/30 18:53:06 by beyarsla         ###   ########.fr       */
+/*   Updated: 2024/04/01 14:26:55 by beyarsla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,12 @@ static void	ft_dispose_map(t_map *tmp_map)
 	int	i;
 
 	i = -1;
-	if(!tmp_map)
+	if (!tmp_map)
 		return ;
-	while(++i < tmp_map->map_y)
+	while (++i < tmp_map->map_y)
 		free(tmp_map->game_map[i]);
 	free(tmp_map->game_map);
 }
-
 
 static void	is_reachable(t_map *tmp_map)
 {
@@ -31,17 +30,17 @@ static void	is_reachable(t_map *tmp_map)
 	int	y;
 
 	y = -1;
-	while(++y < tmp_map->map_y)
+	while (++y < tmp_map->map_y)
 	{
 		x = -1;
-		while(++x < tmp_map->map_x)
+		while (++x < tmp_map->map_x)
 		{
-			if(tmp_map->game_map[y][x] == _EXIT)
+			if (tmp_map->game_map[y][x] == _EXIT)
 			{
 				ft_printf("Exit is not reachable!");
 				exit(1);
 			}
-			else if(tmp_map->game_map[y][x] == _COLLECTIBLE)
+			else if (tmp_map->game_map[y][x] == _COLLECTIBLE)
 			{
 				ft_printf("Collectible is not reachable!");
 				exit(1);
@@ -54,13 +53,13 @@ static void	is_reachable(t_map *tmp_map)
 void	ft_copy_map(t_game *game)
 {
 	t_map	tmp_map;
-	int	i;
+	int		i;
 
 	tmp_map.game_map = malloc(sizeof(char *) * game->map->map_y);
-	if(!tmp_map.game_map && ft_printf("Failed to allocate memory space!"))
+	if (!tmp_map.game_map && ft_printf("Failed to allocate memory space!"))
 		exit(1);
 	i = -1;
-	while(++i < game->map->map_y)
+	while (++i < game->map->map_y)
 		tmp_map.game_map[i] = ft_strdup(game->map->game_map[i]);
 	tmp_map.map_x = game->map->map_x;
 	tmp_map.map_y = game->map->map_y;
@@ -75,12 +74,12 @@ void	ft_get_cords(t_game *game)
 
 	h = -1;
 	game->pos = calloc(1, sizeof(t_locate));
-	if(!game->pos && ft_printf("Failed to allocate pos memory space!"))
+	if (!game->pos && ft_printf("Failed to allocate pos memory space!"))
 		exit(1);
-	while(++h < game->map->map_y)
+	while (++h < game->map->map_y)
 	{
 		w = -1;
-		while(++w < game->map->map_x)
+		while (++w < game->map->map_x)
 		{
 			if (game->map->game_map[h][w] == _PLAYER)
 			{

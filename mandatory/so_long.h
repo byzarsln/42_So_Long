@@ -6,19 +6,18 @@
 /*   By: beyarsla <beyarsla@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 13:07:07 by beyarsla          #+#    #+#             */
-/*   Updated: 2024/03/30 18:52:51 by beyarsla         ###   ########.fr       */
+/*   Updated: 2024/04/01 15:34:50 by beyarsla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "lib/ft_Printf/ft_printf.h"
-# include "lib/Get_Next_Line/get_next_line.h"
-# include "lib/libft/libft.h"
-# include "lib/mlx/mlx.h"
+# include "../lib/ft_Printf/ft_printf.h"
+# include "../lib/Get_Next_Line/get_next_line.h"
+# include "../lib/libft/libft.h"
+# include "../lib/mlx/mlx.h"
 # include "fcntl.h"
-
 
 # define _ELEMENTS "10PEC"
 # define _PLAYER 'P'
@@ -51,13 +50,9 @@
 #  define _KEY_W 13
 # endif
 
-
-
-
 # ifndef _KEY_ESC
 #  define _KEY_ESC 53
 # endif
-
 
 typedef struct s_texture
 {
@@ -68,9 +63,7 @@ typedef struct s_texture
 	void	*coll_img;
 	void	*ground_img;
 	void	*wall_img;
-	
 }			t_textures;
-
 
 typedef struct s_locate
 {
@@ -85,9 +78,9 @@ typedef struct s_locate
 typedef struct s_count
 {
 	int	c_count;
-	int p_count;
-	int e_count;
-}			t_counter;
+	int	p_count;
+	int	e_count;
+}		t_counter;
 
 typedef struct s_map
 {
@@ -106,7 +99,6 @@ typedef struct s_game
 	t_textures	*image;
 }				t_game;
 
-
 void	ber_check(char *map_name);
 void	ft_window_size(t_game *game);
 void	ft_map_char_cont(t_game *game);
@@ -119,6 +111,5 @@ void	ft_direction(t_game *game);
 int		is_move(int keycode, t_game *game);
 void	ft_key_a_d(int keycode, t_game *game);
 void	ft_pos_control(t_game *game);
-
 
 #endif

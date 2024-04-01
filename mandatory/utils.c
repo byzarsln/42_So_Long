@@ -6,7 +6,7 @@
 /*   By: beyarsla <beyarsla@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 18:04:14 by beyarsla          #+#    #+#             */
-/*   Updated: 2024/03/30 18:14:15 by beyarsla         ###   ########.fr       */
+/*   Updated: 2024/04/01 14:38:57 by beyarsla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 void	ft_direction(t_game *game)
 {
-	if(game->pos->direction == 1)
+	if (game->pos->direction == 1)
 		mlx_put_image_to_window(game->mlx, game->mlx_window,
-			game->image->player_left_img, game->pos->player_x, game->pos->player_y);
+			game->image->player_left_img, game->pos->player_x,
+			game->pos->player_y);
 	else
 		mlx_put_image_to_window(game->mlx, game->mlx_window,
-			game->image->player_right_img, game->pos->player_x, game->pos->player_y);
-	if(game->counters->c_count > 0)
+			game->image->player_right_img, game->pos->player_x,
+			game->pos->player_y);
+	if (game->counters->c_count > 0)
 		mlx_put_image_to_window(game->mlx, game->mlx_window,
 			game->image->exit_img, game->pos->exit_x, game->pos->exit_y);
 	//ELSE KOY!!!!!!!!
