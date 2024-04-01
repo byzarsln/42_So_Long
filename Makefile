@@ -1,4 +1,5 @@
 NAME = so_long
+BONUS_NAME = so_long_bonus
 PRINTF_PATH = lib/ft_Printf
 LIBFT_PATH = lib/libft
 
@@ -19,7 +20,15 @@ SRC = mandatory/control.c \
 	mandatory/xpm_control.c \
 	mandatory/so_long.c \
 
-BNS_SRC = 
+BNS_SRC = bonus/control_bonus.c \
+	bonus/map_check_bonus.c \
+	bonus/move_bonus.c \
+	bonus/utils_bonus.c \
+	bonus/map_check2_bonus.c \
+	bonus/window_bonus.c \
+	bonus/xpm_control_bonus.c \
+	bonus/so_long_bonus.c \
+	bonus/utils2_bonus.c \
 
 OBJ = $(SRC:.c=.o)
 BNS_OBJ = $(BNS_SRC:.c=.o)
@@ -36,12 +45,12 @@ YELLOW = \033[0;33m
 all: $(NAME)
 
 $(NAME): $(OBJ) $(PRINTF) $(LIBFT) $(GET_NEXT_LINE) $(MLX)
-	@$(CC) $(CFLAGS) $(OBJ) $(PRINTF) $(LIBFT) $(GET_NEXT_LINE) $(GET_NEXT_LINE_UTILS) $(MLX) $(LDFLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) $(PRINTF) $(LIBFT) $(MLX) $(LDFLAGS) -o $(NAME)
 	@echo "\033[1;34mCompile\033[0m \033[1;32m[Success]\033[0m"
 	@echo "$(BLUE)$(BOLD)How to use :$(RESET) $(LIGHT_GREEN)$(BOLD)./so_long maps/<map name>.ber$(RESET)"
 
 bonus: $(BNS_OBJ) $(PRINTF) $(LIBFT) $(GET_NEXT_LINE) $(MLX)
-	@$(CC) $(CFLAGS) $(BNS_OBJ) $(PRINTF) $(LIBFT) $(GET_NEXT_LINE) $(GET_NEXT_LINE_UTILS) $(MLX) $(LDFLAGS) -o $(BONUS_NAME)
+	@$(CC) $(CFLAGS) $(BNS_OBJ) $(PRINTF) $(LIBFT) $(MLX) $(LDFLAGS) -o $(BONUS_NAME)
 	@echo "\033[1;34mCompile\033[0m \033[1;32m[Success]\033[0m"
 	@echo "$(BLUE)$(BOLD)How to use :$(RESET) $(LIGHT_GREEN)$(BOLD)./so_long_bonus maps/map_bonus/<map name>.ber$(RESET)"
 
