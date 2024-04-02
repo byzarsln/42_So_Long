@@ -6,7 +6,7 @@
 /*   By: beyza <beyza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 18:06:30 by beyarsla          #+#    #+#             */
-/*   Updated: 2024/04/02 13:48:17 by beyza            ###   ########.fr       */
+/*   Updated: 2024/04/02 13:51:51 by beyza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	ft_exit(int err)
 		exit(1);
 	if (err == _EXIT_XPM && ft_printf("exit.xpm not found!"))
 		exit(1);
-	if (err = _ENEMY_R_XPM && ft_printf("enemy_r.xpm not found!"))
+	if (err == _ENEMY_R_XPM && ft_printf("enemy_r.xpm not found!"))
 		exit(1);
-	if (err = _ENEMY_L_XPM && ft_printf("enemy_l.xpm not found!"))
+	if (err == _ENEMY_L_XPM && ft_printf("enemy_l.xpm not found!"))
 		exit(1);
 	// EXITFULL KONTROLÜ VE TANIMLAMASI YAP!!!!!!
 }
