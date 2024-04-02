@@ -6,7 +6,7 @@
 /*   By: beyza <beyza@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 13:07:07 by beyarsla          #+#    #+#             */
-/*   Updated: 2024/04/02 00:59:38 by beyza            ###   ########.fr       */
+/*   Updated: 2024/04/02 13:48:59 by beyza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@
 # include "../lib/mlx/mlx.h"
 # include "fcntl.h"
 
-# define _ELEMENTS "10PEC"
+# define _ELEMENTS "10PECX"
 # define _PLAYER 'P'
 # define _EXIT 'E'
 # define _COLLECTIBLE 'C'
+# define _ENEMY 'X'
 # define _WALL '1'
 # define _GROUND '0'
 # define _COLLECT_XPM 1
@@ -31,6 +32,8 @@
 # define _PLAYER_L_XPM 4
 # define _PLAYER_R_XPM 5
 # define _EXIT_XPM 6
+# define _ENEMY_L_XPM 7
+# define _ENEMY_R_XPM 7
 
 # define _KEY_EXIT 17
 
@@ -58,6 +61,8 @@ typedef struct s_texture
 {
 	void	*player_right_img;
 	void	*player_left_img;
+	void	*enemy_l_img;
+	void	*enemy_r_img;
 	void	*exit_img;
 	void	*exit_full_img;
 	void	*coll_img;
