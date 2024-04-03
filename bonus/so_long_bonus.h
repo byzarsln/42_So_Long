@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beyza <beyza@student.42.fr>                +#+  +:+       +#+        */
+/*   By: beyarsla <beyarsla@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 13:07:07 by beyarsla          #+#    #+#             */
-/*   Updated: 2024/04/02 13:48:59 by beyza            ###   ########.fr       */
+/*   Updated: 2024/04/03 14:49:29 by beyarsla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,10 @@ typedef struct s_texture
 	void	*enemy_r_img;
 	void	*exit_img;
 	void	*exit_full_img;
-	void	*coll_img;
+	void	**coll_img;
+	int		coll_count;
+	int		x;
+	int		y;
 	void	*ground_img;
 	void	*wall_img;
 }			t_textures;
@@ -117,5 +120,7 @@ int		is_move(int keycode, t_game *game);
 void	ft_key_a_d(int keycode, t_game *game);
 void	ft_pos_control(t_game *game);
 int		put_move(t_game *game);
+void	mlxput_img(t_game *game, int x, int y);
+int		put_anim(t_game *game);
 
 #endif

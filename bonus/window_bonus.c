@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beyza <beyza@student.42.fr>                +#+  +:+       +#+        */
+/*   By: beyarsla <beyarsla@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 17:48:55 by beyarsla          #+#    #+#             */
-/*   Updated: 2024/04/02 00:59:45 by beyza            ###   ########.fr       */
+/*   Updated: 2024/04/03 15:46:05 by beyarsla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,7 @@ static int	ft_put_image(t_game *game)
 		x = -1;
 		while (++x < game->map->map_x)
 		{
-			mlx_put_image_to_window(game->mlx, game->mlx_window,
-				game->image->ground_img, x * 64, y * 64);
-			if (game->map->game_map[y][x] == _WALL)
-				mlx_put_image_to_window(game->mlx, game->mlx_window,
-					game->image->wall_img, x * 64, y * 64);
-			if (game->map->game_map[y][x] == _COLLECTIBLE)
-				mlx_put_image_to_window(game->mlx, game->mlx_window,
-					game->image->coll_img, x * 64, y * 64);
-			if (game->map->game_map[y][x] == _EXIT)
-				mlx_put_image_to_window(game->mlx, game->mlx_window,
-					game->image->exit_img, x * 64, y * 64);
+			mlxput_img(game, x, y);
 		}
 	}
 	ft_direction(game);
@@ -79,6 +69,7 @@ void	ft_create_window(t_game *game)
 	game->mlx_window = mlx_new_window(game->mlx, game->map->map_x * 64,
 			game->map->map_y * 64, "SO_LONG");
 	ft_get_path_xpm(game);
+	ft_printf("Move Step: \n");
 	mlx_loop_hook(game->mlx, ft_put_image, game);
 	mlx_key_hook(game->mlx_window, ft_get_keycode, game);
 	mlx_hook(game->mlx_window, 17, 0, ft_mouse_exit, game);

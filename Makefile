@@ -45,7 +45,7 @@ YELLOW = \033[0;33m
 all: $(NAME)
 
 $(NAME): $(OBJ) $(PRINTF) $(LIBFT) $(GET_NEXT_LINE) $(MLX)
-	@$(CC) $(CFLAGS) $(OBJ) $(PRINTF) $(LIBFT) $(MLX) $(LDFLAGS) -o $(NAME)
+	@$(CC) -g $(CFLAGS) $(OBJ) $(PRINTF) $(LIBFT) $(MLX) $(LDFLAGS) -o $(NAME)
 	@echo "\033[1;34mCompile\033[0m \033[1;32m[Success]\033[0m"
 	@echo "$(BLUE)$(BOLD)How to use :$(RESET) $(LIGHT_GREEN)$(BOLD)./so_long maps/<map name>.ber$(RESET)"
 

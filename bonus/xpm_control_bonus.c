@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xpm_control_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beyza <beyza@student.42.fr>                +#+  +:+       +#+        */
+/*   By: beyarsla <beyarsla@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 18:06:30 by beyarsla          #+#    #+#             */
-/*   Updated: 2024/04/02 13:51:51 by beyza            ###   ########.fr       */
+/*   Updated: 2024/04/03 14:49:31 by beyarsla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,14 @@ void	ft_get_path_xpm(t_game *game)
 	game->image = ft_calloc(1, sizeof(t_textures));
 	if (ft_xpm_control())
 	{
-		game->image->coll_img = mlx_xpm_file_to_image(game->mlx,
+		game->image->coll_img = ft_calloc(4, sizeof(void *));
+		game->image->coll_img[0] = mlx_xpm_file_to_image(game->mlx,
+				"./textures/bonus/collect1.xpm", &x, &y);
+		game->image->coll_img[1] = mlx_xpm_file_to_image(game->mlx,
+				"./textures/bonus/collect.xpm", &x, &y);
+		game->image->coll_img[2] = mlx_xpm_file_to_image(game->mlx,
+				"./textures/bonus/collect2.xpm", &x, &y);
+		game->image->coll_img[3] = mlx_xpm_file_to_image(game->mlx,
 				"./textures/bonus/collect.xpm", &x, &y);
 		game->image->ground_img = mlx_xpm_file_to_image(game->mlx,
 				"./textures/bonus/ground.xpm", &x, &y);
