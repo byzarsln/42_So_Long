@@ -6,7 +6,7 @@
 /*   By: beyarsla <beyarsla@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 17:48:55 by beyarsla          #+#    #+#             */
-/*   Updated: 2024/04/05 18:16:41 by beyarsla         ###   ########.fr       */
+/*   Updated: 2024/04/05 18:24:47 by beyarsla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	ft_mouse_exit(void)
 {
 	ft_printf("Exit Successful");
-	return (1);
+	exit(1);
 }
 
 static int	ft_get_keycode(int keycode, t_game *game)
@@ -78,6 +78,6 @@ void	ft_create_window(t_game *game)
 	ft_get_path_xpm(game);
 	mlx_loop_hook(game->mlx, ft_put_image, game);
 	mlx_key_hook(game->mlx_window, ft_get_keycode, game);
-	mlx_hook(game->mlx_window, 17, 0, ft_mouse_exit, game);
+	mlx_hook(game->mlx_window, _KEY_EXIT, 0, ft_mouse_exit, game);
 	mlx_loop(game->mlx);
 }
