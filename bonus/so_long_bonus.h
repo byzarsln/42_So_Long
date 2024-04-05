@@ -6,7 +6,7 @@
 /*   By: beyarsla <beyarsla@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 13:07:07 by beyarsla          #+#    #+#             */
-/*   Updated: 2024/04/03 14:49:29 by beyarsla         ###   ########.fr       */
+/*   Updated: 2024/04/05 18:00:11 by beyarsla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,22 @@
 # define _ENEMY 'X'
 # define _WALL '1'
 # define _GROUND '0'
+
+# define _DIR_LEFT 0
+# define _DIR_RIGHT 1
+# define _DIR_UP 2
+# define _DIR_DOWN 3
+
 # define _COLLECT_XPM 1
+# define _COLLECT1_XPM 9
+# define _COLLECT2_XPM 10
 # define _WALL_XPM 2
 # define _GROUND_XPM 3
 # define _PLAYER_L_XPM 4
 # define _PLAYER_R_XPM 5
 # define _EXIT_XPM 6
 # define _ENEMY_L_XPM 7
-# define _ENEMY_R_XPM 7
+# define _ENEMY_R_XPM 8
 
 # define _KEY_EXIT 17
 
@@ -79,8 +87,11 @@ typedef struct s_locate
 	int	player_y;
 	int	exit_x;
 	int	exit_y;
+	int	enemy_x;
+	int	enemy_y;
 	int	move;
 	int	direction;
+	int	e_direction;
 }			t_locate;
 
 typedef struct s_count
@@ -88,6 +99,7 @@ typedef struct s_count
 	int	c_count;
 	int	p_count;
 	int	e_count;
+	int	x_count;
 }		t_counter;
 
 typedef struct s_map
@@ -122,5 +134,9 @@ void	ft_pos_control(t_game *game);
 int		put_move(t_game *game);
 void	mlxput_img(t_game *game, int x, int y);
 int		put_anim(t_game *game);
+void	ft_exit(int err);
+void	ft_xpm_control2(void);
+void	whereisenemy(t_game *game);
+void	ft_direction(t_game *game);
 
 #endif

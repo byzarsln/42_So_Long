@@ -6,15 +6,14 @@
 /*   By: beyarsla <beyarsla@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 17:48:55 by beyarsla          #+#    #+#             */
-/*   Updated: 2024/04/01 15:42:13 by beyarsla         ###   ########.fr       */
+/*   Updated: 2024/04/05 18:16:41 by beyarsla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	ft_mouse_exit(t_game *game)
+static int	ft_mouse_exit(void)
 {
-	(void)game;
 	ft_printf("Exit Successful");
 	return (1);
 }
@@ -23,7 +22,6 @@ static int	ft_get_keycode(int keycode, t_game *game)
 {
 	if (keycode == _KEY_EXIT || keycode == _KEY_ESC)
 	{
-		//system("leaks a.out");
 		ft_printf("Exit Successful");
 		exit(1);
 	}

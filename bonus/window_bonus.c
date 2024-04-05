@@ -6,7 +6,7 @@
 /*   By: beyarsla <beyarsla@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 17:48:55 by beyarsla          #+#    #+#             */
-/*   Updated: 2024/04/03 15:46:05 by beyarsla         ###   ########.fr       */
+/*   Updated: 2024/04/05 18:01:17 by beyarsla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,25 @@ static int	ft_get_keycode(int keycode, t_game *game)
 {
 	if (keycode == _KEY_EXIT || keycode == _KEY_ESC)
 	{
-		//system("leaks a.out");
 		ft_printf("Exit Successful");
 		exit(1);
 	}
 	if (keycode == _KEY_S)
-		if (is_move(keycode, game) && ft_printf("Move Step: %d\n",
-				game->pos->move++))
+	{
+		if (is_move(keycode, game))
+		{
 			game->pos->player_y += 64;
+			game->pos->move++;
+		}
+	}
 	if (keycode == _KEY_W)
-		if (is_move(keycode, game) && ft_printf("Move Step: %d\n",
-				game->pos->move++))
+	{
+		if (is_move(keycode, game))
+		{
 			game->pos->player_y -= 64;
+			game->pos->move++;
+		}
+	}
 	if (keycode == _KEY_A || keycode == _KEY_D)
 		ft_key_a_d(keycode, game);
 	ft_pos_control(game);
@@ -47,6 +54,7 @@ static int	ft_put_image(t_game *game)
 	int	y;
 
 	mlx_clear_window(game->mlx, game->mlx_window);
+	whereisenemy(game);
 	y = -1;
 	while (++y < game->map->map_y)
 	{
@@ -69,7 +77,6 @@ void	ft_create_window(t_game *game)
 	game->mlx_window = mlx_new_window(game->mlx, game->map->map_x * 64,
 			game->map->map_y * 64, "SO_LONG");
 	ft_get_path_xpm(game);
-	ft_printf("Move Step: \n");
 	mlx_loop_hook(game->mlx, ft_put_image, game);
 	mlx_key_hook(game->mlx_window, ft_get_keycode, game);
 	mlx_hook(game->mlx_window, 17, 0, ft_mouse_exit, game);

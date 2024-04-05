@@ -6,7 +6,7 @@
 /*   By: beyarsla <beyarsla@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:43:33 by ibrsezer          #+#    #+#             */
-/*   Updated: 2024/03/24 17:27:18 by beyarsla         ###   ########.fr       */
+/*   Updated: 2024/04/05 18:04:25 by beyarsla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-#include "../Get_Next_Line/get_next_line.h"
+# include "../Get_Next_Line/get_next_line.h"
 
 int				ft_atoi(const char *str);
 

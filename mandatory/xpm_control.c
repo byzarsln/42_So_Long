@@ -6,7 +6,7 @@
 /*   By: beyarsla <beyarsla@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 18:06:30 by beyarsla          #+#    #+#             */
-/*   Updated: 2024/04/01 15:49:56 by beyarsla         ###   ########.fr       */
+/*   Updated: 2024/04/05 18:05:40 by beyarsla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@ void	ft_exit(int err)
 		exit(1);
 	if (err == _EXIT_XPM && ft_printf("exit.xpm not found!"))
 		exit(1);
-	// EXITFULL KONTROLÜ VE TANIMLAMASI YAP!!!!!!
 }
 
-static int	ft_xpm_control()
+static int	ft_xpm_control(void)
 {
 	int	fd;
 

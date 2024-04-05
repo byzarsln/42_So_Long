@@ -29,6 +29,7 @@ BNS_SRC = bonus/control_bonus.c \
 	bonus/xpm_control_bonus.c \
 	bonus/so_long_bonus.c \
 	bonus/utils2_bonus.c \
+	bonus/enemy_bonus.c \
 
 OBJ = $(SRC:.c=.o)
 BNS_OBJ = $(BNS_SRC:.c=.o)

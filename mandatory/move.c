@@ -6,7 +6,7 @@
 /*   By: beyarsla <beyarsla@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 18:14:42 by beyarsla          #+#    #+#             */
-/*   Updated: 2024/04/01 14:35:46 by beyarsla         ###   ########.fr       */
+/*   Updated: 2024/04/05 18:04:45 by beyarsla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	ft_pos_control(t_game *game)
 	if (game->map->game_map[game->pos->player_y / 64]
 		[game->pos->player_x / 64] == _EXIT && game->counters->c_count == 0)
 	{
-		// system("leaks a.out");
 		ft_printf("Look Up! You're Flying 🎈🥳");
 		exit(0);
 	}

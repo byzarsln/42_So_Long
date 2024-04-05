@@ -6,7 +6,7 @@
 /*   By: beyarsla <beyarsla@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 17:55:47 by beyarsla          #+#    #+#             */
-/*   Updated: 2024/04/01 15:56:23 by beyarsla         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:48:38 by beyarsla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	ft_dispose_map(t_map *tmp_map)
 	free(tmp_map->game_map);
 }
 
-static void	is_reachable(t_map *tmp_map)
+static int	is_reachable(t_map *tmp_map)
 {
 	int	x;
 	int	y;
@@ -36,24 +36,22 @@ static void	is_reachable(t_map *tmp_map)
 		while (++x < tmp_map->map_x)
 		{
 			if (tmp_map->game_map[y][x] == _EXIT)
-			{
-				ft_printf("Exit is not reachable!");
-				exit(1);
-			}
+				return (1);
 			else if (tmp_map->game_map[y][x] == _COLLECTIBLE)
-			{
-				ft_printf("Collectible is not reachable!");
-				exit(1);
-			}
+				return (2);
+			else if (tmp_map->game_map[y][x] == _ENEMY)
+				return (3);
 		}
 	}
 	ft_dispose_map(tmp_map);
+	return (0);
 }
 
 void	ft_copy_map(t_game *game)
 {
 	t_map	tmp_map;
 	int		i;
+	int		result;
 
 	tmp_map.game_map = malloc(sizeof(char *) * game->map->map_y);
 	if (!tmp_map.game_map && ft_printf("Failed to allocate memory space!"))
@@ -64,7 +62,13 @@ void	ft_copy_map(t_game *game)
 	tmp_map.map_x = game->map->map_x;
 	tmp_map.map_y = game->map->map_y;
 	flood_fill(&tmp_map, game->pos->player_y / 64, game->pos->player_x / 64);
-	is_reachable(&tmp_map);
+	result = is_reachable(&tmp_map);
+	if (result == 1 && ft_printf("Exit is not reachable!"))
+		exit(1);
+	else if (result == 2 && ft_printf("Collectible is not reachable!"))
+		exit(1);
+	else if (result == 3 && ft_printf("Enemy is not reachable!"))
+		exit(1);
 }
 
 void	ft_get_cords(t_game *game)
